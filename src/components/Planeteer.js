@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Planeteer() {
+function Planeteer({planet}) {
+  const [toggle,setToggle] = useState(false)
+  
+  const flip =()=>{
+    setToggle((toggle) => !toggle)
+  }
+ 
+  
   return (
     <li className="cards__item">
       <div className="card">
         <img
-          src={"RENDER IMAGE"}
-          alt={"RENDER PERSON NAME"}
+          src={planet.pictureUrl}
+          alt={planet.name}
           className="card__image"
         />
         <div className="card__content">
-          <div className="card__title">{"RENDER NAME"}</div>
-          <p className="card__text">{"CONDITIONALLY RENDER BIO OR QUOTE"}</p>
+          <div className="card__title">{planet.name}</div>
+          <p onClick = {flip} className="card__text">{toggle?planet.bio:planet.quote}</p>
           <div className="card__detail">
-            <p>{"RENDER TWITTER HANDLE"}</p>
+            <p>{planet.twitter}</p>
             <p>
               {
-                "CONDITIONALLY RENDER WHETHER THE PERSON IS USA-BASED OR WORKING OVERSEAS"
+                planet.fromUSA?"USA-Based":"Working overseas"
               }
             </p>
           </div>
@@ -27,3 +34,4 @@ function Planeteer() {
 }
 
 export default Planeteer;
+

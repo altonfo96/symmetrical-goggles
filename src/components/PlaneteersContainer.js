@@ -1,10 +1,19 @@
 import React from "react";
 import Planeteer from "./Planeteer";
 
-function PlaneteersContainer() {
+function PlaneteersContainer({planets, search}) {
+  const filterSearch = planets.filter((planet) => {
+    return(
+      planet.name.toLowerCase().includes(search.toLowerCase())
+    )
+  })
   return (
     <ul className="cards">
-      {/* render a list of <Planeteer> components in here */}
+      {filterSearch.map((planet) => {
+        return(
+          <Planeteer planet = {planet}/>
+        )
+      })}
     </ul>
   );
 }
